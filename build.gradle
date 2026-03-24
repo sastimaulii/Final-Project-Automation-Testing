@@ -24,17 +24,16 @@ dependencies {
     testImplementation 'org.json:json:20240205'
 }
 
-// Update Gradle Tasks untuk TestNG
 task apiTest(type: Test) {
-    useTestNG() // Menggunakan TestNG engine
+    useTestNG()
     options {
-        systemProperty "cucumber.filter.tags", "@api"
+        includeGroups 'api'
     }
 }
 
 task webTest(type: Test) {
-    useTestNG() // Menggunakan TestNG engine
+    useTestNG()
     options {
-        systemProperty "cucumber.filter.tags", "@web"
+        includeGroups 'web'
     }
 }

@@ -43,5 +43,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always() # WAJIB agar report muncul walau test fail
         with:
-          name: cucumber-reports
-          path: build/cucumber-reports/
+          name: all-build-files
+          path: build/
