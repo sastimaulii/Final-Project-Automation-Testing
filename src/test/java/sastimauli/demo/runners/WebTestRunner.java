@@ -9,8 +9,8 @@ import org.testng.annotations.DataProvider;
         glue = "sastimauli.demo.stepdefs.web",
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/web-report.html",
-                "json:target/cucumber-reports/web-report.json"
+                "html:build/cucumber-reports/web-report.html",
+                "json:build/cucumber-reports/web-report.json"
         },
         tags = "@web"
 )
