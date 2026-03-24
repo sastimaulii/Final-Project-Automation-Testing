@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group 'sastimauli.demo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Cucumber + TestNG Adapter
+    testImplementation 'io.cucumber:cucumber-java:7.15.0'
+    testImplementation 'io.cucumber:cucumber-testng:7.15.0' // Penting!
+
+    // TestNG Framework
+    testImplementation 'org.testng:testng:7.9.0'
+
+    // Selenium & RestAssured (Tetap sama)
+    implementation 'org.seleniumhq.selenium:selenium-java:4.18.1'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'org.json:json:20240205'
+}
+
+// Update Gradle Tasks untuk TestNG
+task apiTest(type: Test) {
+    useTestNG() // Menggunakan TestNG engine
+    options {
+        systemProperty "cucumber.filter.tags", "@api"
+    }
+}
+
+task webTest(type: Test) {
+    useTestNG() // Menggunakan TestNG engine
+    options {
+        systemProperty "cucumber.filter.tags", "@web"
+    }
+}
