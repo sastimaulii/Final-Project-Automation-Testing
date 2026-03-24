@@ -78,3 +78,4 @@ Framework ini dikonfigurasi untuk berjalan otomatis pada setiap Push atau Pull R
 1. Web UI Target: ```SauceDemo``` (Login functionality).
 
 2. API Target: ```DummyAPI.io``` (User Management: GET, POST, PUT, DELETE).
+   ``
