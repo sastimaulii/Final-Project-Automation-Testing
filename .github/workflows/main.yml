@@ -44,4 +44,4 @@ jobs:
         if: always() # WAJIB agar report muncul walau test fail
         with:
           name: cucumber-reports
-          path: build/reports/cucumber/
+          path: build/reports/
