@@ -11,17 +11,14 @@ import sastimauli.demo.utils.BaseTest;
 
 public class Hooks {
 
-    @Before("@web")
+    @Before
     public void setUp() {
-        // 1. Konfigurasi Chrome agar bisa jalan di Server (Tanpa Layar)
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+        options.addArguments("--headless=new"); // WAJIB untuk GitHub Actions
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--window-size=1920,1080");
 
-        // 2. Inisialisasi Driver
-        BaseTest.driver = new ChromeDriver(options);
+        BaseTest.driver = new ChromeDriver(options); // Sekarang sudah bisa diakses karena PUBLIC
     }
 
     @After("@web")
