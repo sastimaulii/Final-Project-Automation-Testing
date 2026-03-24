@@ -13,8 +13,10 @@ public class BaseTest {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--headless"); // running tanpa buka windows untuk github action
+            options.addArguments("--headless=new"); // WAJIB untuk GitHub Actions
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
 
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
