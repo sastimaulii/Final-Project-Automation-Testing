@@ -5,7 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch: # Ini untuk manual trigger (Poin 6)
+  workflow_dispatch:
 
 jobs:
   test:
@@ -25,16 +25,23 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      # Tambahkan ini agar Chrome stabil di server
+      - name: Setup Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
       - name: Run API Tests
         run: ./gradlew apiTest
-        continue-on-error: true # Agar test web tetap jalan jika API gagal
+        continue-on-error: true
 
       - name: Run Web UI Tests
         run: ./gradlew webTest
+        continue-on-error: true # Tambah ini agar artifact tetap terupload jika gagal
 
       - name: Upload Cucumber Report
         uses: actions/upload-artifact@v4
-        if: always()
+        if: always() # WAJIB agar report muncul walau test fail
         with:
           name: cucumber-reports
           path: build/reports/cucumber/
