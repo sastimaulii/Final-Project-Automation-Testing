@@ -36,13 +36,14 @@ jobs:
         continue-on-error: true
 
       - name: Run Web UI Tests
-        run: ./gradlew webTest
+        run: ./gradlew clean webTest
         continue-on-error: true # Tambah ini agar artifact tetap terupload jika gagal
 
-      - name: Upload Cucumber Reports
+      - name: Upload Cucumber HTML Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: automation-test-reports
+          name: Cucumber-Report-GitHub
           path: target/cucumber-reports/
+          if-no-files-found: error
             
