@@ -9,16 +9,16 @@ import org.testng.annotations.DataProvider;
         glue = "sastimauli.demo.stepdefs.api",
         plugin = {
                 "pretty",
-                "html:build/cucumber-reports/api-report.html",
-                "json:build/cucumber-reports/api-report.json"
+                "html:target/cucumber-reports/api-report.html",
+                "json:target/cucumber-reports/api-report.json"
         },
         tags = "@api"
 )
 public class ApiTestRunner extends AbstractTestNGCucumberTests {
 
-    @Override
-    @DataProvider(parallel = false) // Set true jika ingin running paralel
-    public Object[][] scenarios() {
-        return super.scenarios();
-    }
+  //  @Override
+  //  @DataProvider(parallel = false) // Set true jika ingin running paralel
+   // public Object[][] scenarios() {
+    //    return super.scenarios();
+   // }
 }

@@ -39,9 +39,12 @@ jobs:
         run: ./gradlew webTest
         continue-on-error: true # Tambah ini agar artifact tetap terupload jika gagal
 
-      - name: Upload Cucumber Report
+      - name: Upload Test Reports
+        if: always()
         uses: actions/upload-artifact@v4
-        if: always() # WAJIB agar report muncul walau test fail
         with:
-          name: all-build-files
-          path: build/
+          name: automation-test-reports
+          path: |
+            target/cucumber-reports.html
+            target/cucumber.json
+            build/reports/tests/test/

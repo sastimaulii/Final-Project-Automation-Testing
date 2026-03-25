@@ -19,23 +19,44 @@ dependencies {
     testImplementation 'org.json:json:20240205'
 }
 
-// Tambahkan ini agar Gradle tahu tes default menggunakan TestNG
 test {
     useTestNG()
+    filter {
+        includeTestsMatching "sastimauli.demo.runners.*"
+    }
 }
 
 task apiTest(type: Test) {
     useTestNG()
     filter {
-        // Arahkan langsung ke class Runner API kamu
         includeTestsMatching "sastimauli.demo.runners.ApiTestRunner"
     }
 }
 
 task webTest(type: Test) {
     useTestNG()
+
+    // Pakai scanForTestClasses agar Gradle mencari anotasi @Test tadi
+    scanForTestClasses = true
+
     filter {
-        // Arahkan langsung ke class Runner Web kamu
-        includeTestsMatching "sastimauli.demo.runners.WebTestRunner"
+        // Gunakan wildcard depan belakang untuk memastikan terpilih
+        includeTestsMatching "*WebTestRunner"
+    }
+
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+        resources {
+            srcDirs = ['src/test/resources']
+        }
     }
 }
